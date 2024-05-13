@@ -1,45 +1,86 @@
-# Web Scraper API
+Sure, here's your updated README.md with added explanations on how to use your tool:
 
-Web Scraper API is a versatile tool that extracts webpage content from any URL and converts it into Markdown format. It is built with Python, Flask, BeautifulSoup and html2text.
+```markdown
+# Extractly
 
-## Setup
+Extractly is a web scraping API built with Flask, BeautifulSoup, and html2text. It offers a straightforward service for scraping specific content from web pages.
 
-- Clone this repository to your local machine.
-- Set up a virtual environment and activate it.
-- Install the required dependencies with:
+## Requirements
+
+- Python 3
+- pip 
+
+## Setup and Installation
+
+1. Clone the repository:
 
 ```bash
-pip install flask requests beautifulsoup4 html2text
+git clone https://github.com/yourusername/extractly.git
+cd extractly
 ```
 
-## API Usage
+2. (Optional) Set up a virtual environment:
 
-Run `python main.py` to start the server, which listens on http://localhost:5000 by default.
-
-It offers a single endpoint, `GET /v1/url`, which accepts a `url` query parameter with the URL of the page to scrape.
-
-**Example:**
-```
-http://localhost:5000/v1/url?url=http://example.com
+```bash
+python3 -m venv venv
+source venv/bin/activate
 ```
 
-## Response
+3. Install required packages:
 
-It responds with a JSON object. On successful requests, the `content` field contains the main content of the webpage in Markdown format. If an error occurs, the `error` field provides an error message.
+```bash
+pip install -r requirements.txt
+```
 
-**Success example:**
-```json
-{
-  "content": "# Title\n\nThis is some text from the example.com homepage.\n\n* And a bullet point\n\n> And a quote"
-}
+4. Start the server:
+
+```bash
+python app.py
 ```
-**Error example:**
-```json
-{
-  "error": "Invalid URL 'http: ww//': No schema supplied. Perhaps you meant http://http: ww//?"
-}
+
+The server runs on port `5000` and is accessible from any network interface on your machine.
+
+## Usage
+
+You can call Extractly's scraping service by sending a GET request to the `/v1/api/webpage/` route with `url` and `selector` as parameters.
+
+### Using the Selector
+
+- **Select by ID**: Prefix the element's ID with a '#' symbol. For example, to select an element with the ID 'main', your selector would be '#main'.
+- **Select by Class**: Prefix the class name with a '.' symbol. If the class is 'content', your selector should be '.content'.
+- **Select by HTML Tag**: If you want to select elements by a specific HTML tag (like 'div', 'p', etc.), simply use the tag name as the selector.
+
+### Example Requests:
+
+- **Request to scrape the first element with the ID 'main':**
+
+```bash
+curl -X GET "http://localhost:5000/v1/api/webpage/?url=https://www.example.com&selector=#main"
 ```
+
+- **Request to scrape the first element with the class 'content':**
+
+```bash
+curl -X GET "http://localhost:5000/v1/api/webpage/?url=https://www.example.com&selector=.content"
+```
+
+- **Request to scrape the first 'article' element:**
+
+```bash
+curl -X GET "http://localhost:5000/v1/api/webpage/?url=https://www.example.com&selector=article"
+```
+
+Note: This tool only returns the first matching element for the provided selector.
 
 ## Contributing
 
-We welcome contributions. To propose changes, please open an issue for discussion. For minor fixes and improvements, feel free to open a
+All contributions are welcome. Please open a new Issue or submit a Pull Request for any bugs, improvements, or feature requests.
+
+## License
+
+Extractly is licensed under the MIT License. See the `LICENSE.txt` file for details.
+
+## Contact
+
+For any inquiries or support, please create a new Issue or contact me at `gabe805@gmail.com`.
+```
