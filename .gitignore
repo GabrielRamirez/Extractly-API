@@ -1,0 +1,11 @@
+# .gitignore
+
+# Ignore the virtual environment folder
+app_env/
+
+# Ignore Python compiled files
+__pycache__/
+*.py[cod]
+
+# Ignore Jupyter notebook checkpoint folders
+.ipynb_checkpoints/
