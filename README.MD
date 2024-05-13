@@ -1,6 +1,3 @@
-Sure, here's your updated README.md with added explanations on how to use your tool:
-
-```markdown
 # Extractly
 
 Extractly is a web scraping API built with Flask, BeautifulSoup, and html2text. It offers a straightforward service for scraping specific content from web pages.
